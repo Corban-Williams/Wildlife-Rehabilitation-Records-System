@@ -8,31 +8,31 @@ namespace Wildlife_Rehabilitation_Program.Classes
 {
     internal class Animal
     {
-        private string AnimalID;
-        private string Name;
-        private string Species;
-        private int Age;
-        private int RecoveredScore;
-        private string Status;
+        private string animalID;
+        private string name;
+        private string species;
+        private int age;
+        private int recoveredScore;
+        private string status;
         private string HousingUnit;
 
-        public Animal(string animalID1, string name1, string species1, int age1, int recoveredScore1, string status1, string housingUnit1)
+        public Animal(string animalID, string name, string species, int age, int recoveredScore, string status, string housingUnit1)
         {
-            AnimalID1 = animalID1;
-            Name1 = name1;
-            Species1 = species1;
-            Age1 = age1;
-            RecoveredScore1 = recoveredScore1;
-            Status1 = status1;
+            AnimalID = animalID;
+            Name = name;
+            Species = species;
+            Age = age;
+            RecoveredScore = recoveredScore;
+            Status = status;
             HousingUnit1 = housingUnit1;
         }
 
-        public string AnimalID1 { get => AnimalID; set => AnimalID = value; }
-        public string Name1 { get => Name; set => Name = value; }
-        public string Species1 { get => Species; set => Species = value; }
-        public int Age1 { get => Age; set => Age = value; }
-        public int RecoveredScore1 { get => RecoveredScore; set => RecoveredScore = value; }
-        public string Status1 { get => Status; set => Status = value; }
+        public string AnimalID { get => animalID; set => animalID = value; }
+        public string Name { get => name; set => name = value; }
+        public string Species { get => species; set => species = value; }
+        public int Age { get => age; set => age = value; }
+        public int RecoveredScore { get => recoveredScore; set => recoveredScore = value; }
+        public string Status { get => status; set => status = value; }
         public string HousingUnit1 { get => HousingUnit; set => HousingUnit = value; }
     }
 }
