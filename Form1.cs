@@ -12,6 +12,8 @@ namespace Wildlife_Rehabilitation_Program
 {
    public partial class Form1 : Form
     {
+        public int selectedRowIndex;
+        public string selectedID;
         public Form1()
         {
             InitializeComponent();
@@ -48,6 +50,24 @@ namespace Wildlife_Rehabilitation_Program
             {
                 dgvDataDisplay.ClearSelection();
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteAnimal deleteManager = new DeleteAnimal();
+            deleteManager.Delete(selectedID,selectedRowIndex);
+        }
+
+        private void dgvDataDisplay_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedRowIndex = e.RowIndex;
+            DataGridViewRow row = dgvDataDisplay.Rows[e.RowIndex];
+            selectedID = row.Cells["AnimalID"].Value.ToString();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dgvDataDisplay.MultiSelect = false;
         }
     }
 }
