@@ -228,6 +228,7 @@
             this.btnSummary.TabIndex = 20;
             this.btnSummary.Text = "Create Summary";
             this.btnSummary.UseVisualStyleBackColor = true;
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
             // Form1
             // 
