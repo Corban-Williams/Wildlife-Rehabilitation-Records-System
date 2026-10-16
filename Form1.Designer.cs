@@ -57,7 +57,7 @@
             this.lblBanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanner.Location = new System.Drawing.Point(25, 28);
             this.lblBanner.Name = "lblBanner";
-            this.lblBanner.Size = new System.Drawing.Size(1034, 46);
+            this.lblBanner.Size = new System.Drawing.Size(835, 37);
             this.lblBanner.TabIndex = 0;
             this.lblBanner.Text = "Baobab Ridge Wildlife Rehabilitation Records System ";
             // 
@@ -71,13 +71,14 @@
             this.dgvDataDisplay.RowTemplate.Height = 24;
             this.dgvDataDisplay.Size = new System.Drawing.Size(704, 549);
             this.dgvDataDisplay.TabIndex = 1;
+            this.dgvDataDisplay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataDisplay_CellClick);
             // 
             // txtAnimalID
             // 
             this.txtAnimalID.Location = new System.Drawing.Point(190, 119);
             this.txtAnimalID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAnimalID.Name = "txtAnimalID";
-            this.txtAnimalID.Size = new System.Drawing.Size(189, 28);
+            this.txtAnimalID.Size = new System.Drawing.Size(189, 24);
             this.txtAnimalID.TabIndex = 2;
             // 
             // txtName
@@ -85,7 +86,7 @@
             this.txtName.Location = new System.Drawing.Point(190, 166);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(189, 28);
+            this.txtName.Size = new System.Drawing.Size(189, 24);
             this.txtName.TabIndex = 3;
             // 
             // txtSpecies
@@ -93,7 +94,7 @@
             this.txtSpecies.Location = new System.Drawing.Point(190, 216);
             this.txtSpecies.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSpecies.Name = "txtSpecies";
-            this.txtSpecies.Size = new System.Drawing.Size(189, 28);
+            this.txtSpecies.Size = new System.Drawing.Size(189, 24);
             this.txtSpecies.TabIndex = 4;
             // 
             // txtAge
@@ -101,7 +102,7 @@
             this.txtAge.Location = new System.Drawing.Point(190, 265);
             this.txtAge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(189, 28);
+            this.txtAge.Size = new System.Drawing.Size(189, 24);
             this.txtAge.TabIndex = 5;
             // 
             // txtScore
@@ -109,7 +110,7 @@
             this.txtScore.Location = new System.Drawing.Point(190, 315);
             this.txtScore.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtScore.Name = "txtScore";
-            this.txtScore.Size = new System.Drawing.Size(189, 28);
+            this.txtScore.Size = new System.Drawing.Size(189, 24);
             this.txtScore.TabIndex = 6;
             // 
             // txtStatus
@@ -117,7 +118,7 @@
             this.txtStatus.Location = new System.Drawing.Point(190, 363);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(189, 28);
+            this.txtStatus.Size = new System.Drawing.Size(189, 24);
             this.txtStatus.TabIndex = 7;
             // 
             // txtHousing
@@ -125,7 +126,7 @@
             this.txtHousing.Location = new System.Drawing.Point(190, 412);
             this.txtHousing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtHousing.Name = "txtHousing";
-            this.txtHousing.Size = new System.Drawing.Size(189, 28);
+            this.txtHousing.Size = new System.Drawing.Size(189, 24);
             this.txtHousing.TabIndex = 8;
             // 
             // lblAnimalID
@@ -133,7 +134,7 @@
             this.lblAnimalID.AutoSize = true;
             this.lblAnimalID.Location = new System.Drawing.Point(27, 122);
             this.lblAnimalID.Name = "lblAnimalID";
-            this.lblAnimalID.Size = new System.Drawing.Size(91, 22);
+            this.lblAnimalID.Size = new System.Drawing.Size(74, 18);
             this.lblAnimalID.TabIndex = 9;
             this.lblAnimalID.Text = "Animal ID:";
             // 
@@ -142,7 +143,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(29, 169);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(62, 22);
+            this.lblName.Size = new System.Drawing.Size(52, 18);
             this.lblName.TabIndex = 10;
             this.lblName.Text = "Name:";
             // 
@@ -151,7 +152,7 @@
             this.lblAge.AutoSize = true;
             this.lblAge.Location = new System.Drawing.Point(29, 268);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(47, 22);
+            this.lblAge.Size = new System.Drawing.Size(37, 18);
             this.lblAge.TabIndex = 11;
             this.lblAge.Text = "Age:";
             // 
@@ -160,7 +161,7 @@
             this.lblScore.AutoSize = true;
             this.lblScore.Location = new System.Drawing.Point(29, 318);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(154, 22);
+            this.lblScore.Size = new System.Drawing.Size(128, 18);
             this.lblScore.TabIndex = 12;
             this.lblScore.Text = "Recovered Score:";
             // 
@@ -169,7 +170,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(29, 366);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(66, 22);
+            this.lblStatus.Size = new System.Drawing.Size(54, 18);
             this.lblStatus.TabIndex = 13;
             this.lblStatus.Text = "Status:";
             // 
@@ -178,7 +179,7 @@
             this.lblSpecies.AutoSize = true;
             this.lblSpecies.Location = new System.Drawing.Point(27, 222);
             this.lblSpecies.Name = "lblSpecies";
-            this.lblSpecies.Size = new System.Drawing.Size(79, 22);
+            this.lblSpecies.Size = new System.Drawing.Size(65, 18);
             this.lblSpecies.TabIndex = 14;
             this.lblSpecies.Text = "Species:";
             // 
@@ -187,7 +188,7 @@
             this.lblHousing.AutoSize = true;
             this.lblHousing.Location = new System.Drawing.Point(29, 415);
             this.lblHousing.Name = "lblHousing";
-            this.lblHousing.Size = new System.Drawing.Size(118, 22);
+            this.lblHousing.Size = new System.Drawing.Size(97, 18);
             this.lblHousing.TabIndex = 15;
             this.lblHousing.Text = "Housing Unit:";
             // 
@@ -217,6 +218,7 @@
             this.btnDelete.TabIndex = 19;
             this.btnDelete.Text = "Delete Record";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSummary
             // 
@@ -226,10 +228,11 @@
             this.btnSummary.TabIndex = 20;
             this.btnSummary.Text = "Create Summary";
             this.btnSummary.UseVisualStyleBackColor = true;
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 656);
             this.Controls.Add(this.btnSummary);
@@ -256,6 +259,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "DashBoard";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataDisplay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
