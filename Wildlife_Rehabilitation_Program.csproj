@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Animal.cs" />
+    <Compile Include="Classes\AnimalValidation.cs" />
     <Compile Include="DeleteAnimal.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
