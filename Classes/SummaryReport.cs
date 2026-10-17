@@ -6,6 +6,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
 
 namespace Wildlife_Rehabilitation_Program
@@ -26,86 +27,116 @@ namespace Wildlife_Rehabilitation_Program
         {
             double avgAge;
             double avgRecoveryScore;
+            int totalAnimals;
 
-            int totalAnimals = File.ReadAllLines(_file).Length;
-            var (ages, recoveryScores, criticalCount, seriousCount, stableCount, recoveryCount, releaseReadyCount) = ReadFileValues();
+            try
+            {
+                if (!File.Exists(_file))
+                {
+                    MessageBox.Show("ERROR: File animal.txt does not exist");
+                }
+                totalAnimals = File.ReadAllLines(_file).Length;
 
-            avgAge = ages / totalAnimals;
-            avgRecoveryScore = recoveryScores / totalAnimals;
+                if (totalAnimals == 0)
+                {
+                    MessageBox.Show("ERROR: No data in animal.txt");
+                }
+                else
+                {
+                    var (ages, recoveryScores, criticalCount, seriousCount, stableCount, recoveryCount, releaseReadyCount) = ReadFileValues();
 
-            string summaryContent =
+                    avgAge = Math.Round(ages / totalAnimals,2);
+                    avgRecoveryScore = Math.Round(recoveryScores / totalAnimals,2);         //rounded to 2 decimals
+
+                    string summaryContent =
             "BAOBAB RIDGE WILDLIFE REHABILITATION CENTRE \r\n" +
             "ANIMAL SUMMARY REPORT \r\n" +
-            $"Generated: {DateTime.Now} " +
+            $"Generated: {DateTime.Now} \r\n" +
             "---------------------------------------- \r\n" +
-            $"Total animals:            \r\n{totalAnimals} \r\n" +
-            $"Average age (years):      \r\n{avgAge} \r\n" +
-            $"Average recovery score:   {avgRecoveryScore} " +
+            $"Total animals:           {totalAnimals} \r\n" +
+            $"Average age (years):     {avgAge} \r\n" +
+            $"Average recovery score:  {avgRecoveryScore}\r\n" +
             "---------------------------------------- \r\n" +
-            $"Animals per status: \r\n" +
-            $"Critical:               \r\n{criticalCount} \r\n" +
-            $"Serious:                \r\n{seriousCount} \r\n" +
-            $"Stable:                 \r\n{stableCount} \r\n" +
-            $"Recovering:             \r\n{recoveryCount} \r\n" +
-            $"Release-Ready:          \r\n{releaseReadyCount} ";
+            "Animals per status: \r\n" +
+            $"Critical:                 {criticalCount} \r\n" +
+            $"Serious:                  {seriousCount} \r\n" +
+            $"Stable:                   {stableCount} \r\n" +
+            $"Recovering:               {recoveryCount} \r\n" +
+            $"Release-Ready:            {releaseReadyCount} ";
 
-            File.WriteAllText(_fileSummary, summaryContent);
+                    File.WriteAllText(_fileSummary, summaryContent);
 
-            return (totalAnimals, avgAge, avgRecoveryScore, criticalCount, seriousCount, stableCount, recoveryCount, releaseReadyCount);
+                    return (totalAnimals, avgAge, avgRecoveryScore, criticalCount, seriousCount, stableCount, recoveryCount, releaseReadyCount);
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+                return (0, 0, 0, 0, 0, 0, 0, 0);
+            }
+
+            return (0, 0, 0, 0, 0, 0, 0, 0);
+
         }
         
 
         //METHOD: ReadFileValues
         //This method reads the animal textfile and through iterations return the values needed to form the summary. It returns a series of values
-        public (int ages, int recoveryScore, int critical, int serious, int stable, int recovering, int release) ReadFileValues()
+        public (double ages, double recoveryScore, int critical, int serious, int stable, int recovering, int release) ReadFileValues()
         {
-            int ages = 0;
-            int recoveryScores = 0;
+            double ages = 0;
+            double recoveryScores = 0;
             int critical = 0;
             int serious = 0;
             int stable = 0;
             int recovering = 0;
             int release = 0;
 
-            using (StreamReader reader = new StreamReader(_file))
+            try
             {
-                string text;
-                while ((text = reader.ReadLine()) != null)
+                using (StreamReader reader = new StreamReader(_file))
                 {
-                    string[] parts = text.Split('|');
+                    string text;
+                    while ((text = reader.ReadLine()) != null)
+                    {
+                        string[] parts = text.Split('|');
 
-                    ages += int.Parse(parts[3]);
-                    recoveryScores += int.Parse(parts[4]);
-                    int countStatus = int.Parse(parts[4]);
+                        ages += int.Parse(parts[3]);
+                        recoveryScores += int.Parse(parts[4]);
+                        int countStatus = int.Parse(parts[4]);
 
-                    if (countStatus < 19)
-                    {
-                        ++critical;
+                        if (countStatus <= 19)
+                        {
+                            ++critical;
+                        }
+                        else if (countStatus > 20 && countStatus < 39)
+                        {
+                            ++serious;
+                        }
+                        else if (countStatus > 40 && countStatus < 59)
+                        {
+                            ++stable;
+                        }
+                        else if (countStatus > 60 && countStatus < 79)
+                        {
+                            ++recovering;
+                        }
+                        else if (countStatus > 80 && countStatus < 100)
+                        {
+                            ++release;
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Invalid recovery status range detected for a animal");
+                        }
                     }
-                    else if(countStatus > 20 && countStatus < 39)
-                    {
-                        ++serious;
-                    }
-                    else if (countStatus > 40 && countStatus < 59)
-                    {
-                        ++stable;
-                    }
-                    else if(countStatus > 60 && countStatus < 79)
-                    {
-                        ++recovering;
-                    }
-                    else if (countStatus > 80 && countStatus < 100)
-                    {
-                        ++release;
-                    }
-                    else
-                    {
-                        //Not valid
-                    }
-
-
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+            
 
             return (ages, recoveryScores, critical, serious, stable, recovering, release);              //spesified series of values returned
         }

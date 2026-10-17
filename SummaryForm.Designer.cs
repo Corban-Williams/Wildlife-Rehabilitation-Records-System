@@ -177,7 +177,7 @@
             // 
             this.lblGenerateTime.AutoSize = true;
             this.lblGenerateTime.Font = new System.Drawing.Font("Roboto Lt", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenerateTime.Location = new System.Drawing.Point(353, 87);
+            this.lblGenerateTime.Location = new System.Drawing.Point(32, 86);
             this.lblGenerateTime.Name = "lblGenerateTime";
             this.lblGenerateTime.Size = new System.Drawing.Size(71, 13);
             this.lblGenerateTime.TabIndex = 20;
@@ -213,7 +213,7 @@
             // lblCriticalDisplay
             // 
             this.lblCriticalDisplay.AutoSize = true;
-            this.lblCriticalDisplay.Location = new System.Drawing.Point(339, 284);
+            this.lblCriticalDisplay.Location = new System.Drawing.Point(339, 278);
             this.lblCriticalDisplay.Name = "lblCriticalDisplay";
             this.lblCriticalDisplay.Size = new System.Drawing.Size(35, 13);
             this.lblCriticalDisplay.TabIndex = 24;
@@ -222,7 +222,7 @@
             // lblSeriousDisplay
             // 
             this.lblSeriousDisplay.AutoSize = true;
-            this.lblSeriousDisplay.Location = new System.Drawing.Point(339, 325);
+            this.lblSeriousDisplay.Location = new System.Drawing.Point(339, 321);
             this.lblSeriousDisplay.Name = "lblSeriousDisplay";
             this.lblSeriousDisplay.Size = new System.Drawing.Size(35, 13);
             this.lblSeriousDisplay.TabIndex = 25;
@@ -258,7 +258,7 @@
             // lblTimeDisplay
             // 
             this.lblTimeDisplay.AutoSize = true;
-            this.lblTimeDisplay.Location = new System.Drawing.Point(443, 86);
+            this.lblTimeDisplay.Location = new System.Drawing.Point(109, 85);
             this.lblTimeDisplay.Name = "lblTimeDisplay";
             this.lblTimeDisplay.Size = new System.Drawing.Size(35, 13);
             this.lblTimeDisplay.TabIndex = 29;
