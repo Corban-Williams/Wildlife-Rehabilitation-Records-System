@@ -1,4 +1,6 @@
-﻿namespace Wildlife_Rehabilitation_Program
+﻿using System;
+
+namespace Wildlife_Rehabilitation_Program
 {
     partial class Form1
     {
@@ -263,6 +265,12 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            SummaryForm frmSum = new SummaryForm();
+            frmSum.Show();
         }
 
         #endregion
