@@ -17,6 +17,11 @@ namespace Wildlife_Rehabilitation_Program
         public Form1()
         {
             InitializeComponent();
+
+            this.dgvDataDisplay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataDisplay_CellClick);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
+            
             SetAddMode();
         }
 
@@ -60,14 +65,38 @@ namespace Wildlife_Rehabilitation_Program
 
         private void dgvDataDisplay_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedRowIndex = e.RowIndex;
+            if (e.RowIndex < 0 || e.RowIndex >= dgvDataDisplay.Rows.Count)
+            {
+               return;
+            }
+         
             DataGridViewRow row = dgvDataDisplay.Rows[e.RowIndex];
-            selectedID = row.Cells["AnimalID"].Value.ToString();
+         
+            if (row.IsNewRow || row.Cells[0].Value == null || string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()))
+            {
+               SetAddMode();
+               return;
+            }
+         
+            txtAnimalID.Text = row.Cells["AnimalID"]?.Value?.ToString() ?? row.Cells[0].Value?.ToString() ?? "";
+            txtName.Text = row.Cells["Name"]?.Value?.ToString() ?? row.Cells[1].Value?.ToString() ?? "";
+            txtSpecies.Text = row.Cells["Species"]?.Value?.ToString() ?? row.Cells[2].Value?.ToString() ?? "";
+            txtAge.Text = row.Cells["Age"]?.Value?.ToString() ?? row.Cells[3].Value?.ToString() ?? "";
+            txtScore.Text = row.Cells["RecoveryScore"]?.Value?.ToString() ?? row.Cells[4].Value?.ToString() ?? "";
+            txtStatus.Text = row.Cells["Status"]?.Value?.ToString() ?? row.Cells[5].Value?.ToString() ?? "";
+            txtHousing.Text = row.Cells["HousingUnit"]?.Value?.ToString() ?? row.Cells[6].Value?.ToString() ?? "";
+         
+            SetEditMode();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             dgvDataDisplay.MultiSelect = false;
         }
+
+       private void btnSummary_Click(object sender, EventArgs e)
+       {
+          SetAddMode();
+       }
     }
 }
