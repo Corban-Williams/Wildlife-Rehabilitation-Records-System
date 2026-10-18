@@ -14,6 +14,8 @@ namespace Wildlife_Rehabilitation_Program
     public partial class Form1 : Form
     {
         private List<Animal> animalList = new List<Animal>();
+        public int selectedRowIndex;
+        public string selectedID;
 
         public Form1()
         {
@@ -21,6 +23,7 @@ namespace Wildlife_Rehabilitation_Program
 
             this.dgvDataDisplay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataDisplay_CellClick);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
 
             SetAddMode();
         }
@@ -59,23 +62,31 @@ namespace Wildlife_Rehabilitation_Program
 
         private void dgvDataDisplay_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < dgvDataDisplay.Rows.Count)
+            if (e.RowIndex < 0 || e.RowIndex >= dgvDataDisplay.Rows.Count)
             {
-                DataGridViewRow row = dgvDataDisplay.Rows[e.RowIndex];
-
-                if (row.Cells[0].Value != null)
-                {
-                    txtAnimalID.Text = row.Cells["AnimalID"]?.Value?.ToString() ?? row.Cells[0].Value.ToString();
-                    txtName.Text = row.Cells["Name"]?.Value?.ToString() ?? row.Cells[1].Value.ToString();
-                    txtSpecies.Text = row.Cells["Species"]?.Value?.ToString() ?? row.Cells[2].Value.ToString();
-                    txtAge.Text = row.Cells["Age"]?.Value?.ToString() ?? row.Cells[3].Value.ToString();
-                    txtScore.Text = row.Cells["RecoveryScore"]?.Value?.ToString() ?? row.Cells[4].Value.ToString();
-                    txtStatus.Text = row.Cells["Status"]?.Value?.ToString() ?? row.Cells[5].Value.ToString();
-                    txtHousing.Text = row.Cells["HousingUnit"]?.Value?.ToString() ?? row.Cells[6].Value.ToString();
-
-                    SetEditMode();
-                }
+                return;
             }
+
+            DataGridViewRow row = dgvDataDisplay.Rows[e.RowIndex];
+
+            if (row.IsNewRow || row.Cells[0].Value == null || string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()))
+            {
+                SetAddMode();
+                return;
+            }
+
+            selectedRowIndex = e.RowIndex;
+            txtAnimalID.Text = row.Cells["AnimalID"]?.Value?.ToString() ?? row.Cells[0].Value?.ToString() ?? "";
+            selectedID = txtAnimalID.Text;
+
+            txtName.Text = row.Cells["Name"]?.Value?.ToString() ?? row.Cells[1].Value?.ToString() ?? "";
+            txtSpecies.Text = row.Cells["Species"]?.Value?.ToString() ?? row.Cells[2].Value?.ToString() ?? "";
+            txtAge.Text = row.Cells["Age"]?.Value?.ToString() ?? row.Cells[3].Value?.ToString() ?? "";
+            txtScore.Text = row.Cells["RecoveryScore"]?.Value?.ToString() ?? row.Cells[4].Value?.ToString() ?? "";
+            txtStatus.Text = row.Cells["Status"]?.Value?.ToString() ?? row.Cells[5].Value?.ToString() ?? "";
+            txtHousing.Text = row.Cells["HousingUnit"]?.Value?.ToString() ?? row.Cells[6].Value?.ToString() ?? "";
+
+            SetEditMode();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -114,8 +125,8 @@ namespace Wildlife_Rehabilitation_Program
                 targetAnimal.Species = txtSpecies.Text.Trim();
                 targetAnimal.Age = age;
                 targetAnimal.RecoveryScore = score;
-                targetAnimal.Status = txtStatus.Text.Trim();
-                targetAnimal.HousingUnit = txtHousing.Text.Trim();
+                targetAnimal.Status = string.IsNullOrWhiteSpace(txtStatus.Text) ? targetAnimal.Status : txtStatus.Text.Trim();
+                targetAnimal.HousingUnit = string.IsNullOrWhiteSpace(txtHousing.Text) ? targetAnimal.HousingUnit : txtHousing.Text.Trim();
 
                 RefreshGridDisplay();
                 MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -126,6 +137,11 @@ namespace Wildlife_Rehabilitation_Program
             {
                 MessageBox.Show("Target animal record not found in system memory.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            SetAddMode();
         }
 
         private void RefreshGridDisplay()
