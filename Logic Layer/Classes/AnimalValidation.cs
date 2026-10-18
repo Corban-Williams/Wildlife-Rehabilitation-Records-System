@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace WildlifeRehabilitationRecordsSystem.Classes
+namespace Wildlife_Rehabilitation_Program.Classes
+
 {
 
     // Validates the information entered for an animal.
@@ -16,6 +17,12 @@ namespace WildlifeRehabilitationRecordsSystem.Classes
 
         public static bool ValidateAnimalId(string id)
         {
+            
+            if (string.IsNullOrEmpty(id)) 
+            { 
+                return false; 
+            }
+
             id = id.Trim().ToUpperInvariant();
 
             return Regex.IsMatch(id, @"^WR-\d{4}$");
@@ -25,6 +32,10 @@ namespace WildlifeRehabilitationRecordsSystem.Classes
 
         public static bool ValidateTextField(string value)
         {
+            if (string.IsNullOrEmpty(value)) 
+            { 
+                return false; 
+            }
             value = value.Trim();
 
             return value.Length >= 1 && value.Length <= 30 && !value.Contains("|");
