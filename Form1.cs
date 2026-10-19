@@ -31,7 +31,7 @@ namespace Wildlife_Rehabilitation_Program
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Add button clicked.");
+            
         }
 
         private void SetAddMode()
@@ -158,7 +158,7 @@ namespace Wildlife_Rehabilitation_Program
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete button clicked");
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)

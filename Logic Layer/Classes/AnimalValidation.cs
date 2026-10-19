@@ -18,7 +18,7 @@ namespace Wildlife_Rehabilitation_Program.Classes
         public static bool ValidateAnimalId(string id)
         {
             
-            if (string.IsNullOrEmpty(id)) 
+            if (string.IsNullOrWhiteSpace(id)) 
             { 
                 return false; 
             }
@@ -32,7 +32,7 @@ namespace Wildlife_Rehabilitation_Program.Classes
 
         public static bool ValidateTextField(string value)
         {
-            if (string.IsNullOrEmpty(value)) 
+            if (string.IsNullOrWhiteSpace(value)) 
             { 
                 return false; 
             }
