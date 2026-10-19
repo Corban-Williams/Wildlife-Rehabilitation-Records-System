@@ -37,11 +37,7 @@ namespace Wildlife_Rehabilitation_Program.Classes
 
         public void Classification()
         { 
-            if (RecoveredScore > 100 || RecoveredScore < 0)
-            {
-                throw new ArgumentOutOfRangeException("RecoveredScore must be between 0 and 100.");
-            }
-            else if (RecoveredScore >= 80)
+            if (RecoveredScore >= 80)
             {
                 Status = "Release-Ready";
                 HousingUnit = "Pre-Release Camp";

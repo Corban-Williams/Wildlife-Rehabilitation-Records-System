@@ -30,8 +30,17 @@ namespace Wildlife_Rehabilitation_Program
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            string id = txtAnimalID.Text.Trim();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+            string ageText = txtAge.Text.Trim();
+            string scoreText = txtScore.Text.Trim();
+            string status = txtStatus.Text.Trim();
+            string housing = txtHousing.Text.Trim();
             AddAnimal addAnimal = new AddAnimal();
             addAnimal.CreateAnimalFile();
+            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), status, housing);
+            addAnimal.Add(animal);
         }
 
         private void SetAddMode()

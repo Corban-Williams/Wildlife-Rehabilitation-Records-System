@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wildlife_Rehabilitation_Program.Classes;
 
 namespace Wildlife_Rehabilitation_Program.Data_Access_Layer
 {
@@ -17,6 +18,20 @@ namespace Wildlife_Rehabilitation_Program.Data_Access_Layer
             if (!File.Exists("../../animals.txt"))
             {
                 File.Create("../../animals.txt").Close();
+            }
+        }
+        public void Add(Animal animal)
+        {
+            try
+            {
+                using(StreamWriter sw = new StreamWriter(_file, true))
+                {
+                    sw.WriteLine($"{animal.AnimalID}|{animal.Name}|{animal.Species}|{animal.Age}|{animal.RecoveredScore}|{animal.Status}|{animal.HousingUnit}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while adding the animal: " + ex.Message);
             }
         }
     }
