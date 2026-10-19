@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data Access Layer\AddAnimal.cs" />
     <Compile Include="Logic Layer\Classes\Animal.cs" />
     <Compile Include="Logic Layer\Classes\AnimalValidation.cs" />
     <Compile Include="Data Access Layer\DeleteAnimal.cs" />
