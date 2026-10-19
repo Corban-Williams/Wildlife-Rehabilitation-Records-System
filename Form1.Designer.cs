@@ -267,12 +267,6 @@ namespace Wildlife_Rehabilitation_Program
 
         }
 
-        private void btnSummary_Click(object sender, EventArgs e)
-        {
-            SummaryForm frmSum = new SummaryForm();
-            frmSum.Show();
-        }
-
         #endregion
 
         private System.Windows.Forms.Label lblBanner;
