@@ -35,8 +35,8 @@ namespace Wildlife_Rehabilitation_Program
             string species = txtSpecies.Text.Trim();
             string ageText = txtAge.Text.Trim();
             string scoreText = txtScore.Text.Trim();
-            string status = txtStatus.Text.Trim();
-            string housing = txtHousing.Text.Trim();
+            string status;
+            string housing;
 
             if (!AnimalValidator.ValidateAnimalId(id))          
             {
@@ -63,9 +63,11 @@ namespace Wildlife_Rehabilitation_Program
                 MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             AddAnimal addAnimal = new AddAnimal();
             addAnimal.CreateAnimalFile();
-            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), status, housing);
+            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
+            animal.Classification(int.Parse(scoreText));
             addAnimal.Add(animal);
         }
 

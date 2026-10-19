@@ -1,0 +1,1 @@
+WR-0002|John|Kangaroo|2|88|Release-Ready|Pre-Release Camp
