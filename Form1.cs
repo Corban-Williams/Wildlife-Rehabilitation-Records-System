@@ -22,9 +22,7 @@ namespace Wildlife_Rehabilitation_Program
             InitializeComponent();
 
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.dgvDataDisplay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataDisplay_CellClick);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             
 
             SetAddMode();
@@ -86,7 +84,7 @@ namespace Wildlife_Rehabilitation_Program
             txtName.Text     = animal.Name;
             txtSpecies.Text  = animal.Species;
             txtAge.Text      = animal.Age.ToString();
-            txtScore.Text    = animal.RecoveryScore.ToString();
+            txtScore.Text    = animal.RecoveredScore.ToString();
             txtStatus.Text   = animal.Status;
             txtHousing.Text  = animal.HousingUnit;
         
@@ -128,7 +126,7 @@ namespace Wildlife_Rehabilitation_Program
                 targetAnimal.Name = txtName.Text.Trim();
                 targetAnimal.Species = txtSpecies.Text.Trim();
                 targetAnimal.Age = age;
-                targetAnimal.RecoveryScore = score;
+                targetAnimal.RecoveredScore = score;
                 targetAnimal.Status = string.IsNullOrWhiteSpace(txtStatus.Text) ? targetAnimal.Status : txtStatus.Text.Trim();
                 targetAnimal.HousingUnit = string.IsNullOrWhiteSpace(txtHousing.Text) ? targetAnimal.HousingUnit : txtHousing.Text.Trim();
 
@@ -178,14 +176,5 @@ namespace Wildlife_Rehabilitation_Program
             dgvDataDisplay.DataSource = animalList;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
