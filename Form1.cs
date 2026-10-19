@@ -21,10 +21,17 @@ namespace Wildlife_Rehabilitation_Program
         {
             InitializeComponent();
 
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.dgvDataDisplay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataDisplay_CellClick);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
+            
 
             SetAddMode();
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void SetAddMode()
@@ -169,6 +176,16 @@ namespace Wildlife_Rehabilitation_Program
         {
             dgvDataDisplay.DataSource = null;
             dgvDataDisplay.DataSource = animalList;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
