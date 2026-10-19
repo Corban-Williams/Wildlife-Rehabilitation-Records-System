@@ -67,6 +67,7 @@ namespace Wildlife_Rehabilitation_Program
             Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
             animal.Classification(int.Parse(scoreText));
             addAnimal.Add(animal);
+            DisplayAnimals();
         }
 
         private void SetAddMode()
@@ -190,7 +191,7 @@ namespace Wildlife_Rehabilitation_Program
             dgvDataDisplay.AllowUserToAddRows = false;
             dgvDataDisplay.AllowUserToDeleteRows = false;
             dgvDataDisplay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            RefreshGridDisplay();
+            DisplayAnimals();
         }
         
         private void btnDelete_Click(object sender, EventArgs e)
@@ -213,10 +214,10 @@ namespace Wildlife_Rehabilitation_Program
             dgvDataDisplay.DataSource = animalList;
         }
 
-        public void DisplayAnimals(List<Animal> animals)
+        public void DisplayAnimals()
         {
+            animalList = ReadAnimals.ReadAnimalFile();
             RefreshGridDisplay();
-
         }
     }
 }

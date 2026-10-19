@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wildlife_Rehabilitation_Program.Classes
 {
-    internal class Animal
+    public class Animal
     {
         private string animalID;
         private string name;

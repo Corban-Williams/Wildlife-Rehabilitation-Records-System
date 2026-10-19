@@ -1,1 +1,2 @@
 WR-0002|John|Kangaroo|2|88|Release-Ready|Pre-Release Camp
+WR-0001|Arthur|Rabbit|5|10|Critical|Intensive Care Unit
