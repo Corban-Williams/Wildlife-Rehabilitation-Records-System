@@ -14,7 +14,6 @@ namespace Wildlife_Rehabilitation_Program.Classes
     public class AnimalValidator
     {
         // Checks whether an Animal ID has the required format.
-
         public static bool ValidateAnimalId(string id)
         {
             

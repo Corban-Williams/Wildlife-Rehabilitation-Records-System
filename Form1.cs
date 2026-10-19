@@ -17,7 +17,6 @@ namespace Wildlife_Rehabilitation_Program
         private List<Animal> animalList = new List<Animal>();
         public int selectedRowIndex = -1;
         public string selectedID;
-
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +29,7 @@ namespace Wildlife_Rehabilitation_Program
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            
             string id = txtAnimalID.Text.Trim();
             string name = txtName.Text.Trim();
             string species = txtSpecies.Text.Trim();
@@ -37,6 +37,32 @@ namespace Wildlife_Rehabilitation_Program
             string scoreText = txtScore.Text.Trim();
             string status = txtStatus.Text.Trim();
             string housing = txtHousing.Text.Trim();
+
+            if (!AnimalValidator.ValidateAnimalId(id))          
+            {
+                MessageBox.Show("Invalid Animal ID. It must be alphanumeric and 3-10 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateTextField(name))
+            {
+                MessageBox.Show("Invalid Name. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateTextField(species))
+            {
+                MessageBox.Show("Invalid Species. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateAge(ageText))
+            {
+                MessageBox.Show("Invalid Age. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateRecoveryScore(scoreText))
+            {
+                MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             AddAnimal addAnimal = new AddAnimal();
             addAnimal.CreateAnimalFile();
             Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), status, housing);
