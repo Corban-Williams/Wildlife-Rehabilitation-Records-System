@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wildlife_Rehabilitation_Program.Classes;
+using Wildlife_Rehabilitation_Program.Data_Access_Layer;
 
 namespace Wildlife_Rehabilitation_Program
 {
@@ -29,7 +30,8 @@ namespace Wildlife_Rehabilitation_Program
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            AddAnimal addAnimal = new AddAnimal();
+            addAnimal.CreateAnimalFile();
         }
 
         private void SetAddMode()
@@ -176,5 +178,9 @@ namespace Wildlife_Rehabilitation_Program
             dgvDataDisplay.DataSource = animalList;
         }
 
+        private void btnAdd_Click_1(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
