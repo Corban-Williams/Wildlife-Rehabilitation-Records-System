@@ -34,5 +34,38 @@ namespace Wildlife_Rehabilitation_Program.Classes
         public int RecoveredScore { get => recoveredScore; set => recoveredScore = value; }
         public string Status { get => status; set => status = value; }
         public string HousingUnit { get => housingUnit; set => housingUnit = value; }
+
+        public void Classification()
+        { 
+            if (RecoveredScore > 100 || RecoveredScore < 0)
+            {
+                throw new ArgumentOutOfRangeException("RecoveredScore must be between 0 and 100.");
+            }
+            else if (RecoveredScore >= 80)
+            {
+                Status = "Release-Ready";
+                HousingUnit = "Pre-Release Camp";
+            }
+            else if (RecoveredScore >= 60)
+            {
+                Status = "Recovering";
+                HousingUnit = "Outdoor Enclosure";
+            }
+            else if (RecoveredScore >= 40)
+            {
+                Status = "Stable";
+                HousingUnit = "Recovery Ward";
+            }
+            else if (RecoveredScore >= 20)
+            {
+                Status = "Serious";
+                HousingUnit = "High Dependancy Ward";
+            }
+            else if (RecoveredScore >= 0)
+            {
+                Status = "Critical";
+                HousingUnit = "Intensive Care Unit";
+            }
+        }
     }
 }
