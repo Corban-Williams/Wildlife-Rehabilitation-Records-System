@@ -202,7 +202,6 @@ namespace Wildlife_Rehabilitation_Program
             this.btnAdd.TabIndex = 17;
             this.btnAdd.Text = "Save New Record";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
             // btnUpdate
             // 

@@ -35,8 +35,6 @@ namespace Wildlife_Rehabilitation_Program
             string species = txtSpecies.Text.Trim();
             string ageText = txtAge.Text.Trim();
             string scoreText = txtScore.Text.Trim();
-            string status;
-            string housing;
 
             if (!AnimalValidator.ValidateAnimalId(id))          
             {
@@ -215,9 +213,10 @@ namespace Wildlife_Rehabilitation_Program
             dgvDataDisplay.DataSource = animalList;
         }
 
-        private void btnAdd_Click_1(object sender, EventArgs e)
+        public void DisplayAnimals(List<Animal> animals)
         {
-            
+            RefreshGridDisplay();
+
         }
     }
 }
