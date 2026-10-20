@@ -176,6 +176,13 @@ namespace Wildlife_Rehabilitation_Program
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            
+            if (selectedRowIndex < 0 || selectedRowIndex >= animalList.Count)
+            {
+                MessageBox.Show("Please select a record to Update.", "Selection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string id = txtAnimalID.Text.Trim();
 
             if (string.IsNullOrEmpty(id))
@@ -211,8 +218,11 @@ namespace Wildlife_Rehabilitation_Program
                 targetAnimal.Age = age;
                 targetAnimal.RecoveredScore = score;
                 targetAnimal.Classification(score);
-                
-                RefreshGridDisplay();
+
+                UpdateAnimal updateAnimal = new UpdateAnimal();
+                updateAnimal.Update(id, selectedRowIndex, targetAnimal);
+
+                DisplayAnimals();
                 MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show($"Recovery Score: {targetAnimal.RecoveredScore}\n" + $"Status: {targetAnimal.Status}\n" + $"Housing Unit: {targetAnimal.HousingUnit}", "Animal Classification", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
