@@ -84,56 +84,6 @@ namespace Wildlife_Rehabilitation_Program
             SetEditMode();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            string id = txtAnimalID.Text.Trim();
-
-            if (string.IsNullOrEmpty(id))
-            {
-                MessageBox.Show("Please select a record to update.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtSpecies.Text))
-            {
-                MessageBox.Show("Name and Species fields cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!int.TryParse(txtAge.Text.Trim(), out int age) || age < 0)
-            {
-                MessageBox.Show("Please enter a valid non-negative integer for Age.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!int.TryParse(txtScore.Text.Trim(), out int score) || score < 0 || score > 100)
-            {
-                MessageBox.Show("Recovery Score must be an integer between 0 and 100.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-              Animal targetAnimal = animalList.FirstOrDefault(a => string.Equals(a.AnimalID, id, StringComparison.OrdinalIgnoreCase));
-
-            if (targetAnimal != null)
-            {
-                targetAnimal.Name = txtName.Text.Trim();
-                targetAnimal.Species = txtSpecies.Text.Trim();
-                targetAnimal.Age = age;
-                targetAnimal.RecoveredScore = score;
-                targetAnimal.Status = string.IsNullOrWhiteSpace(txtStatus.Text) ? targetAnimal.Status : txtStatus.Text.Trim();
-                targetAnimal.HousingUnit = string.IsNullOrWhiteSpace(txtHousing.Text) ? targetAnimal.HousingUnit : txtHousing.Text.Trim();
-
-                RefreshGridDisplay();
-                MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                SetAddMode();
-            }
-            else
-            {
-                MessageBox.Show("Target animal record not found in system memory.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             dgvDataDisplay.ReadOnly = true;
@@ -221,6 +171,56 @@ namespace Wildlife_Rehabilitation_Program
         {
             ClearInputFields();
             SetAddMode();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string id = txtAnimalID.Text.Trim();
+
+            if (string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("Please select a record to update.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtSpecies.Text))
+            {
+                MessageBox.Show("Name and Species fields cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(txtAge.Text.Trim(), out int age) || age < 0)
+            {
+                MessageBox.Show("Please enter a valid non-negative integer for Age.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(txtScore.Text.Trim(), out int score) || score < 0 || score > 100)
+            {
+                MessageBox.Show("Recovery Score must be an integer between 0 and 100.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Animal targetAnimal = animalList.FirstOrDefault(a => string.Equals(a.AnimalID, id, StringComparison.OrdinalIgnoreCase));
+
+            if (targetAnimal != null)
+            {
+                targetAnimal.Name = txtName.Text.Trim();
+                targetAnimal.Species = txtSpecies.Text.Trim();
+                targetAnimal.Age = age;
+                targetAnimal.RecoveredScore = score;
+                targetAnimal.Status = string.IsNullOrWhiteSpace(txtStatus.Text) ? targetAnimal.Status : txtStatus.Text.Trim();
+                targetAnimal.HousingUnit = string.IsNullOrWhiteSpace(txtHousing.Text) ? targetAnimal.HousingUnit : txtHousing.Text.Trim();
+
+                RefreshGridDisplay();
+                MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                SetAddMode();
+            }
+            else
+            {
+                MessageBox.Show("Target animal record not found in system memory.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
