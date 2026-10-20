@@ -211,8 +211,7 @@ namespace Wildlife_Rehabilitation_Program
                 targetAnimal.Species = txtSpecies.Text.Trim();
                 targetAnimal.Age = age;
                 targetAnimal.RecoveredScore = score;
-                targetAnimal.Status = string.IsNullOrWhiteSpace(txtStatus.Text) ? targetAnimal.Status : txtStatus.Text.Trim();
-                targetAnimal.HousingUnit = string.IsNullOrWhiteSpace(txtHousing.Text) ? targetAnimal.HousingUnit : txtHousing.Text.Trim();
+                targetAnimal.Classification(score);
 
                 RefreshGridDisplay();
                 MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
