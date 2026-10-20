@@ -202,6 +202,7 @@ namespace Wildlife_Rehabilitation_Program
             this.btnAdd.TabIndex = 17;
             this.btnAdd.Text = "Save New Record";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
@@ -230,6 +231,7 @@ namespace Wildlife_Rehabilitation_Program
             this.btnSummary.TabIndex = 20;
             this.btnSummary.Text = "Create Summary";
             this.btnSummary.UseVisualStyleBackColor = true;
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
             // Form1
             // 

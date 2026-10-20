@@ -20,55 +20,9 @@ namespace Wildlife_Rehabilitation_Program
         public string selectedID;
         public Form1()
         {
-            InitializeComponent();
-
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            
+            InitializeComponent();           
 
             SetAddMode();
-        }
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            
-            string id = txtAnimalID.Text.Trim();
-            string name = txtName.Text.Trim();
-            string species = txtSpecies.Text.Trim();
-            string ageText = txtAge.Text.Trim();
-            string scoreText = txtScore.Text.Trim();
-
-            if (!AnimalValidator.ValidateAnimalId(id))          
-            {
-                MessageBox.Show("Invalid Animal ID. It must be alphanumeric and 3-10 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateTextField(name))
-            {
-                MessageBox.Show("Invalid Name. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateTextField(species))
-            {
-                MessageBox.Show("Invalid Species. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateAge(ageText))
-            {
-                MessageBox.Show("Invalid Age. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateRecoveryScore(scoreText))
-            {
-                MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            AddAnimal addAnimal = new AddAnimal();
-            addAnimal.CreateAnimalFile();
-            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
-            animal.Classification(int.Parse(scoreText));
-            addAnimal.Add(animal);
-            DisplayAnimals();
         }
 
         private void SetAddMode()
@@ -180,12 +134,6 @@ namespace Wildlife_Rehabilitation_Program
             }
         }
 
-        private void btnSummary_Click(object sender, EventArgs e)
-        {
-            SummaryForm summary = new SummaryForm();
-            summary.ShowDialog();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             dgvDataDisplay.ReadOnly = true;
@@ -219,6 +167,54 @@ namespace Wildlife_Rehabilitation_Program
         {
             animalList = ReadAnimals.ReadAnimalFile();
             RefreshGridDisplay();
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            SummaryForm summary = new SummaryForm();
+            summary.ShowDialog();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string id = txtAnimalID.Text.Trim();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+            string ageText = txtAge.Text.Trim();
+            string scoreText = txtScore.Text.Trim();
+
+            if (!AnimalValidator.ValidateAnimalId(id))
+            {
+                MessageBox.Show("Invalid Animal ID. It must be alphanumeric and 3-10 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateTextField(name))
+            {
+                MessageBox.Show("Invalid Name. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateTextField(species))
+            {
+                MessageBox.Show("Invalid Species. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateAge(ageText))
+            {
+                MessageBox.Show("Invalid Age. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateRecoveryScore(scoreText))
+            {
+                MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            AddAnimal addAnimal = new AddAnimal();
+            addAnimal.CreateAnimalFile();
+            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
+            animal.Classification(int.Parse(scoreText));
+            addAnimal.Add(animal);
+            DisplayAnimals();
         }
     }
 }
