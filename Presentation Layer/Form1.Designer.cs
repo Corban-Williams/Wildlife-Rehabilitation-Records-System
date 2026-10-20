@@ -66,10 +66,14 @@ namespace Wildlife_Rehabilitation_Program
             // 
             // dgvDataDisplay
             // 
+            this.dgvDataDisplay.AllowUserToAddRows = false;
+            this.dgvDataDisplay.AllowUserToDeleteRows = false;
             this.dgvDataDisplay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDataDisplay.Location = new System.Drawing.Point(419, 94);
             this.dgvDataDisplay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvDataDisplay.MultiSelect = false;
             this.dgvDataDisplay.Name = "dgvDataDisplay";
+            this.dgvDataDisplay.ReadOnly = true;
             this.dgvDataDisplay.RowHeadersWidth = 51;
             this.dgvDataDisplay.RowTemplate.Height = 24;
             this.dgvDataDisplay.Size = new System.Drawing.Size(704, 620);

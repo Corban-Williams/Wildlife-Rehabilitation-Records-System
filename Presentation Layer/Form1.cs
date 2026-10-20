@@ -103,6 +103,8 @@ namespace Wildlife_Rehabilitation_Program
             }
         
             animalList.RemoveAt(selectedRowIndex);
+            DeleteAnimal deleteAnimal = new DeleteAnimal();
+            deleteAnimal.Delete(selectedID, selectedRowIndex);
             RefreshGridDisplay();
             SetAddMode();
         }
