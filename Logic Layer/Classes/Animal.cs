@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wildlife_Rehabilitation_Program.Classes
 {
-    internal class Animal
+    public class Animal
     {
         private string animalID;
         private string name;
@@ -35,33 +35,29 @@ namespace Wildlife_Rehabilitation_Program.Classes
         public string Status { get => status; set => status = value; }
         public string HousingUnit { get => housingUnit; set => housingUnit = value; }
 
-        public void Classification()
+        public void Classification(int score)
         { 
-            if (RecoveredScore > 100 || RecoveredScore < 0)
-            {
-                throw new ArgumentOutOfRangeException("RecoveredScore must be between 0 and 100.");
-            }
-            else if (RecoveredScore >= 80)
+            if (score >= 80)
             {
                 Status = "Release-Ready";
                 HousingUnit = "Pre-Release Camp";
             }
-            else if (RecoveredScore >= 60)
+            else if (score >= 60)
             {
                 Status = "Recovering";
                 HousingUnit = "Outdoor Enclosure";
             }
-            else if (RecoveredScore >= 40)
+            else if (score >= 40)
             {
                 Status = "Stable";
                 HousingUnit = "Recovery Ward";
             }
-            else if (RecoveredScore >= 20)
+            else if (score >= 20)
             {
                 Status = "Serious";
                 HousingUnit = "High Dependancy Ward";
             }
-            else if (RecoveredScore >= 0)
+            else
             {
                 Status = "Critical";
                 HousingUnit = "Intensive Care Unit";
