@@ -43,6 +43,9 @@ Animal informatiom can be modified from the user clicking a value in the display
 ~*Delete Animal Records*:                 
 Removes the selected row from the displayed data by clicking on a cell then matching the data to the selected row. The button delete will handle the rewrite of the data, without the selected animal to the same text file.
 
+~*Search Functionality*:                   
+The user is able to search for a record in the text file.
+
 ~*Generate Summary Report*:                
 Calculate the average recovery time and animal ages, while also counting the amount of animals in the system to be displayed in a pop-up form with the values and layout of the data being saved to a summary text file.
 
