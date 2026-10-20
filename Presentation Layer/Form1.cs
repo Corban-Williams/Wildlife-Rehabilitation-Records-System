@@ -209,6 +209,17 @@ namespace Wildlife_Rehabilitation_Program
                 return;
             }
 
+            DialogResult confirm = MessageBox.Show(
+            $"Save changes to animal {id}?",
+            "Confirm Update",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+        
+            if (confirm != DialogResult.Yes)
+            {
+                return;
+            }
+
             Animal targetAnimal = animalList.FirstOrDefault(a => string.Equals(a.AnimalID, id, StringComparison.OrdinalIgnoreCase));
 
             if (targetAnimal != null)
