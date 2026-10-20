@@ -1,1 +1,9 @@
-WR-0002|John|Kangaroo|2|88|Release-Ready|Pre-Release Camp
+WR-0001|Thabo|African Penguin|4|85|Release-Ready|Pre-Release Camp
+WR-0002|Naledi|Serval|3|62|Recovering|Outdoor Enclosure
+WR-0003|Tilly|Snake|1|88|Release-Ready|Pre-Release Camp
+WR-0004|Zola|Cape Vulture|12|19|Critical|Intensive Care Unit
+WR-0005|John|Dog|8|40|Stable|Recovery Ward
+WR-0005|John|Dog|8|43|Stable|Recovery Ward
+WR-0006|May|Cat|5|95|Release-Ready|Pre-Release Camp
+WR-0007|Harry|Tiger|7|5|Critical|Intensive Care Unit
+WR-0008|Susan|Parrot|15|65|Recovering|Outdoor Enclosure

@@ -94,10 +94,10 @@ namespace Wildlife_Rehabilitation_Program
                 return;
             }
         
-            animalList.RemoveAt(selectedRowIndex);
+            //animalList.RemoveAt(selectedRowIndex);
             DeleteAnimal deleteAnimal = new DeleteAnimal();
             deleteAnimal.Delete(selectedID, selectedRowIndex);
-            RefreshGridDisplay();
+            DisplayAnimals();
             SetAddMode();
         }
 
@@ -211,9 +211,10 @@ namespace Wildlife_Rehabilitation_Program
                 targetAnimal.Age = age;
                 targetAnimal.RecoveredScore = score;
                 targetAnimal.Classification(score);
-
+                
                 RefreshGridDisplay();
                 MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Recovery Score: {targetAnimal.RecoveredScore}\n" + $"Status: {targetAnimal.Status}\n" + $"Housing Unit: {targetAnimal.HousingUnit}", "Animal Classification", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 SetAddMode();
             }

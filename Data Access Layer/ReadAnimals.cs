@@ -16,7 +16,15 @@ namespace Wildlife_Rehabilitation_Program.Data_Access_Layer
             string[] lines = File.ReadAllLines("../../animals.txt");
             foreach (string line in lines)
             {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    continue; // Skip empty lines
+                }
                 string[] items = line.Split('|');
+                if (items.Length < 7)
+                {
+                    continue; // Skip lines with insufficient data
+                }
                 Animal animal = new Animal(items[0], items[1], items[2], int.Parse(items[3]), int.Parse(items[4]), items[5], items[6]);
                 animals.Add(animal);
             }
