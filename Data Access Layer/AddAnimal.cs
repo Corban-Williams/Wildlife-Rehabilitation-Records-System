@@ -10,7 +10,7 @@ namespace Wildlife_Rehabilitation_Program.Data_Access_Layer
 {
     internal class AddAnimal
     {
-        public string _file = "../../animals.txt";
+        public string _file = "animals.txt";
         List<string> animals = new List<string>();
         public void CreateAnimalFile()
         {

@@ -16,8 +16,8 @@ namespace Wildlife_Rehabilitation_Program
         public SummaryReport() { }
 
         //File name animal.txt where data is being read from and summary.txt where the data is displayed in
-        public string _file = "../../animals.txt";
-        public string _fileSummary = "../../summary.txt";
+        public string _file = "animals.txt";
+        public string _fileSummary = "summary.txt";
 
 
         //METHOD: sumReport()
