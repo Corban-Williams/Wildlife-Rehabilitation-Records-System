@@ -11,7 +11,7 @@ namespace Wildlife_Rehabilitation_Program
 {
     internal class DeleteAnimal
     {
-        public string _file = "animals.txt";
+        public string _file = "../../animals.txt";
         List<string> animals = new List<string>();
 
         //name bysit

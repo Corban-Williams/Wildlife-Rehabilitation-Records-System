@@ -13,7 +13,7 @@ namespace Wildlife_Rehabilitation_Program.Data_Access_Layer
         public static List<Animal> ReadAnimalFile()
         {
             List<Animal> animals = new List<Animal>();
-            string[] lines = File.ReadAllLines("animals.txt");
+            string[] lines = File.ReadAllLines("../../animals.txt");
             foreach (string line in lines)
             {
                 if (string.IsNullOrWhiteSpace(line))
