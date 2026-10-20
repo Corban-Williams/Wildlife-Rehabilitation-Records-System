@@ -55,7 +55,7 @@ namespace Wildlife_Rehabilitation_Program.Classes
             else if (score >= 20)
             {
                 Status = "Serious";
-                HousingUnit = "High Dependancy Ward";
+                HousingUnit = "High-Dependancy Ward";
             }
             else
             {
