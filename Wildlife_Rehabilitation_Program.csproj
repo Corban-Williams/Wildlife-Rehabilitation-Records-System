@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data Access Layer\AddAnimal.cs" />
-    <Compile Include="Data Access Layer\ReadAndWrite.cs" />
     <Compile Include="Data Access Layer\ReadAnimals.cs" />
     <Compile Include="Data Access Layer\UpdateAnimal.cs" />
     <Compile Include="Logic Layer\Animal.cs" />

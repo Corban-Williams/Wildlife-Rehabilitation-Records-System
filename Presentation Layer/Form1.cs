@@ -129,7 +129,7 @@ namespace Wildlife_Rehabilitation_Program
 
             if (!AnimalValidator.ValidateAnimalId(id))
             {
-                MessageBox.Show("Invalid Animal ID. It must be alphanumeric and 3-10 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Animal ID. ID must start with 'WR-' and then have 4 alphanumeric characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (!AnimalValidator.ValidateTextField(name))
