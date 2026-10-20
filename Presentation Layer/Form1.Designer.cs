@@ -50,6 +50,7 @@ namespace Wildlife_Rehabilitation_Program
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSummary = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataDisplay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +72,7 @@ namespace Wildlife_Rehabilitation_Program
             this.dgvDataDisplay.Name = "dgvDataDisplay";
             this.dgvDataDisplay.RowHeadersWidth = 51;
             this.dgvDataDisplay.RowTemplate.Height = 24;
-            this.dgvDataDisplay.Size = new System.Drawing.Size(704, 549);
+            this.dgvDataDisplay.Size = new System.Drawing.Size(704, 620);
             this.dgvDataDisplay.TabIndex = 1;
             this.dgvDataDisplay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataDisplay_CellClick);
             // 
@@ -120,6 +121,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtStatus.Location = new System.Drawing.Point(190, 363);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(189, 28);
             this.txtStatus.TabIndex = 7;
             // 
@@ -128,6 +130,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtHousing.Location = new System.Drawing.Point(190, 412);
             this.txtHousing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtHousing.Name = "txtHousing";
+            this.txtHousing.ReadOnly = true;
             this.txtHousing.Size = new System.Drawing.Size(189, 28);
             this.txtHousing.TabIndex = 8;
             // 
@@ -233,11 +236,22 @@ namespace Wildlife_Rehabilitation_Program
             this.btnSummary.UseVisualStyleBackColor = true;
             this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(111, 643);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(188, 71);
+            this.btnClear.TabIndex = 21;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 656);
+            this.ClientSize = new System.Drawing.Size(1153, 727);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSummary);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -291,6 +305,7 @@ namespace Wildlife_Rehabilitation_Program
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSummary;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

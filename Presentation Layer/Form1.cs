@@ -216,5 +216,11 @@ namespace Wildlife_Rehabilitation_Program
             addAnimal.Add(animal);
             DisplayAnimals();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearInputFields();
+            SetAddMode();
+        }
     }
 }
