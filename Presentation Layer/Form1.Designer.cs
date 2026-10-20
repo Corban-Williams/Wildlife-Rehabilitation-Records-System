@@ -51,6 +51,9 @@ namespace Wildlife_Rehabilitation_Program
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSummary = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblSearchAnimalID = new System.Windows.Forms.Label();
+            this.txtSearchAnimalID = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataDisplay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +63,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblBanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanner.Location = new System.Drawing.Point(25, 28);
             this.lblBanner.Name = "lblBanner";
-            this.lblBanner.Size = new System.Drawing.Size(1034, 46);
+            this.lblBanner.Size = new System.Drawing.Size(835, 37);
             this.lblBanner.TabIndex = 0;
             this.lblBanner.Text = "Baobab Ridge Wildlife Rehabilitation Records System ";
             // 
@@ -85,7 +88,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtAnimalID.Location = new System.Drawing.Point(190, 119);
             this.txtAnimalID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAnimalID.Name = "txtAnimalID";
-            this.txtAnimalID.Size = new System.Drawing.Size(189, 28);
+            this.txtAnimalID.Size = new System.Drawing.Size(189, 24);
             this.txtAnimalID.TabIndex = 2;
             // 
             // txtName
@@ -93,7 +96,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtName.Location = new System.Drawing.Point(190, 166);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(189, 28);
+            this.txtName.Size = new System.Drawing.Size(189, 24);
             this.txtName.TabIndex = 3;
             // 
             // txtSpecies
@@ -101,7 +104,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtSpecies.Location = new System.Drawing.Point(190, 216);
             this.txtSpecies.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSpecies.Name = "txtSpecies";
-            this.txtSpecies.Size = new System.Drawing.Size(189, 28);
+            this.txtSpecies.Size = new System.Drawing.Size(189, 24);
             this.txtSpecies.TabIndex = 4;
             // 
             // txtAge
@@ -109,7 +112,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtAge.Location = new System.Drawing.Point(190, 265);
             this.txtAge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(189, 28);
+            this.txtAge.Size = new System.Drawing.Size(189, 24);
             this.txtAge.TabIndex = 5;
             // 
             // txtScore
@@ -117,7 +120,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtScore.Location = new System.Drawing.Point(190, 315);
             this.txtScore.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtScore.Name = "txtScore";
-            this.txtScore.Size = new System.Drawing.Size(189, 28);
+            this.txtScore.Size = new System.Drawing.Size(189, 24);
             this.txtScore.TabIndex = 6;
             // 
             // txtStatus
@@ -126,7 +129,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(189, 28);
+            this.txtStatus.Size = new System.Drawing.Size(189, 24);
             this.txtStatus.TabIndex = 7;
             // 
             // txtHousing
@@ -135,7 +138,7 @@ namespace Wildlife_Rehabilitation_Program
             this.txtHousing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtHousing.Name = "txtHousing";
             this.txtHousing.ReadOnly = true;
-            this.txtHousing.Size = new System.Drawing.Size(189, 28);
+            this.txtHousing.Size = new System.Drawing.Size(189, 24);
             this.txtHousing.TabIndex = 8;
             // 
             // lblAnimalID
@@ -143,7 +146,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblAnimalID.AutoSize = true;
             this.lblAnimalID.Location = new System.Drawing.Point(27, 122);
             this.lblAnimalID.Name = "lblAnimalID";
-            this.lblAnimalID.Size = new System.Drawing.Size(91, 22);
+            this.lblAnimalID.Size = new System.Drawing.Size(74, 18);
             this.lblAnimalID.TabIndex = 9;
             this.lblAnimalID.Text = "Animal ID:";
             // 
@@ -152,7 +155,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(29, 169);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(62, 22);
+            this.lblName.Size = new System.Drawing.Size(52, 18);
             this.lblName.TabIndex = 10;
             this.lblName.Text = "Name:";
             // 
@@ -161,7 +164,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblAge.AutoSize = true;
             this.lblAge.Location = new System.Drawing.Point(29, 268);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(47, 22);
+            this.lblAge.Size = new System.Drawing.Size(37, 18);
             this.lblAge.TabIndex = 11;
             this.lblAge.Text = "Age:";
             // 
@@ -170,7 +173,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblScore.AutoSize = true;
             this.lblScore.Location = new System.Drawing.Point(29, 318);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(154, 22);
+            this.lblScore.Size = new System.Drawing.Size(128, 18);
             this.lblScore.TabIndex = 12;
             this.lblScore.Text = "Recovered Score:";
             // 
@@ -179,7 +182,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(29, 366);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(66, 22);
+            this.lblStatus.Size = new System.Drawing.Size(54, 18);
             this.lblStatus.TabIndex = 13;
             this.lblStatus.Text = "Status:";
             // 
@@ -188,7 +191,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblSpecies.AutoSize = true;
             this.lblSpecies.Location = new System.Drawing.Point(27, 222);
             this.lblSpecies.Name = "lblSpecies";
-            this.lblSpecies.Size = new System.Drawing.Size(79, 22);
+            this.lblSpecies.Size = new System.Drawing.Size(65, 18);
             this.lblSpecies.TabIndex = 14;
             this.lblSpecies.Text = "Species:";
             // 
@@ -197,7 +200,7 @@ namespace Wildlife_Rehabilitation_Program
             this.lblHousing.AutoSize = true;
             this.lblHousing.Location = new System.Drawing.Point(29, 415);
             this.lblHousing.Name = "lblHousing";
-            this.lblHousing.Size = new System.Drawing.Size(118, 22);
+            this.lblHousing.Size = new System.Drawing.Size(97, 18);
             this.lblHousing.TabIndex = 15;
             this.lblHousing.Text = "Housing Unit:";
             // 
@@ -251,11 +254,41 @@ namespace Wildlife_Rehabilitation_Program
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // lblSearchAnimalID
+            // 
+            this.lblSearchAnimalID.AutoSize = true;
+            this.lblSearchAnimalID.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSearchAnimalID.Location = new System.Drawing.Point(429, 72);
+            this.lblSearchAnimalID.Name = "lblSearchAnimalID";
+            this.lblSearchAnimalID.Size = new System.Drawing.Size(121, 18);
+            this.lblSearchAnimalID.TabIndex = 22;
+            this.lblSearchAnimalID.Text = "Search Animal ID";
+            // 
+            // txtSearchAnimalID
+            // 
+            this.txtSearchAnimalID.Location = new System.Drawing.Point(565, 69);
+            this.txtSearchAnimalID.Name = "txtSearchAnimalID";
+            this.txtSearchAnimalID.Size = new System.Drawing.Size(189, 24);
+            this.txtSearchAnimalID.TabIndex = 23;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(771, 69);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 24;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 727);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearchAnimalID);
+            this.Controls.Add(this.lblSearchAnimalID);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSummary);
             this.Controls.Add(this.btnDelete);
@@ -311,6 +344,9 @@ namespace Wildlife_Rehabilitation_Program
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSummary;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblSearchAnimalID;
+        private System.Windows.Forms.TextBox txtSearchAnimalID;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 

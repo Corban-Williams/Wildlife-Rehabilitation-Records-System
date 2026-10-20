@@ -71,16 +71,8 @@ namespace Wildlife_Rehabilitation_Program
             }
         
             selectedRowIndex = e.RowIndex;
-            selectedID = animal.AnimalID;
-        
-            txtAnimalID.Text = animal.AnimalID;
-            txtName.Text     = animal.Name;
-            txtSpecies.Text  = animal.Species;
-            txtAge.Text      = animal.Age.ToString();
-            txtScore.Text    = animal.RecoveredScore.ToString();
-            txtStatus.Text   = animal.Status;
-            txtHousing.Text  = animal.HousingUnit;
-        
+            LoadAnimalForEditing(animal);
+
             SetEditMode();
         }
 
@@ -160,11 +152,18 @@ namespace Wildlife_Rehabilitation_Program
                 MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (!AnimalValidator.ValidateUniqueAnimalId(id, animalList))
+            {
+                MessageBox.Show("This Animal ID already exists. Please enter a unique ID.", "Duplicate Animal ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAnimalID.Focus();
+                return;
+            }
 
             AddAnimal addAnimal = new AddAnimal();
             addAnimal.CreateAnimalFile();
             Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
             animal.Classification(int.Parse(scoreText));
+            MessageBox.Show( $"Recovery Score: {animal.RecoveredScore}\n" + $"Status: {animal.Status}\n" + $"Housing Unit: {animal.HousingUnit}", "Animal Classification", MessageBoxButtons.OK, MessageBoxIcon.Information);
             addAnimal.Add(animal);
             DisplayAnimals();
         }
@@ -222,6 +221,42 @@ namespace Wildlife_Rehabilitation_Program
             {
                 MessageBox.Show("Target animal record not found in system memory.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void LoadAnimalForEditing(Animal animal)
+        {
+            selectedID = animal.AnimalID;
+
+            txtAnimalID.Text = animal.AnimalID;
+            txtName.Text = animal.Name;
+            txtSpecies.Text = animal.Species;
+            txtAge.Text = animal.Age.ToString();
+            txtScore.Text = animal.RecoveredScore.ToString();
+            txtStatus.Text = animal.Status;
+            txtHousing.Text = animal.HousingUnit;
+
+            SetEditMode();
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchID = txtSearchAnimalID.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchID))
+            {
+                MessageBox.Show("Please enter an Animal ID to search for.", "Search", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSearchAnimalID.Focus();
+                return;
+            }
+
+            Animal animal = animalList.FirstOrDefault(a => string.Equals(a.AnimalID, searchID, StringComparison.OrdinalIgnoreCase));
+
+            if (animal == null)
+            {
+                MessageBox.Show( "No animal was found with that ID.", "Record Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            LoadAnimalForEditing(animal);
         }
     }
 }

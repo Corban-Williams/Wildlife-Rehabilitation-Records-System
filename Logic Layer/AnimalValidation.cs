@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Wildlife_Rehabilitation_Program.Classes;
 
 namespace Wildlife_Rehabilitation_Program.Classes
 
@@ -53,6 +54,22 @@ namespace Wildlife_Rehabilitation_Program.Classes
         public static bool ValidateRecoveryScore(string value)
         {
             return int.TryParse(value, out int score) && score >= 0 && score <= 100;
+        }
+
+        // Checks whether an Animal ID is unique in the current records.
+        public static bool ValidateUniqueAnimalId(
+            string id, IEnumerable<Animal> animals)
+        {
+            if (string.IsNullOrWhiteSpace(id) || animals == null)
+            {
+                return false;
+            }
+
+            return !animals.Any(a =>
+                string.Equals(
+                    a.AnimalID,
+                    id.Trim(),
+                    StringComparison.OrdinalIgnoreCase));
         }
     }
 }
