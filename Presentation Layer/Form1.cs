@@ -129,7 +129,7 @@ namespace Wildlife_Rehabilitation_Program
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string id = txtAnimalID.Text.Trim();
+            string id = txtAnimalID.Text.Trim().ToUpper();
             string name = txtName.Text.Trim();
             string species = txtSpecies.Text.Trim();
             string ageText = txtAge.Text.Trim();
