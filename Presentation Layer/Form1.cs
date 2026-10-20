@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,55 +20,9 @@ namespace Wildlife_Rehabilitation_Program
         public string selectedID;
         public Form1()
         {
-            InitializeComponent();
-
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            
+            InitializeComponent();           
 
             SetAddMode();
-        }
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            
-            string id = txtAnimalID.Text.Trim();
-            string name = txtName.Text.Trim();
-            string species = txtSpecies.Text.Trim();
-            string ageText = txtAge.Text.Trim();
-            string scoreText = txtScore.Text.Trim();
-
-            if (!AnimalValidator.ValidateAnimalId(id))          
-            {
-                MessageBox.Show("Invalid Animal ID. It must be alphanumeric and 3-10 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateTextField(name))
-            {
-                MessageBox.Show("Invalid Name. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateTextField(species))
-            {
-                MessageBox.Show("Invalid Species. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateAge(ageText))
-            {
-                MessageBox.Show("Invalid Age. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!AnimalValidator.ValidateRecoveryScore(scoreText))
-            {
-                MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            AddAnimal addAnimal = new AddAnimal();
-            addAnimal.CreateAnimalFile();
-            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
-            animal.Classification(int.Parse(scoreText));
-            addAnimal.Add(animal);
-            DisplayAnimals();
         }
 
         private void SetAddMode()
@@ -129,6 +84,97 @@ namespace Wildlife_Rehabilitation_Program
             SetEditMode();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dgvDataDisplay.ReadOnly = true;
+            dgvDataDisplay.AllowUserToAddRows = false;
+            dgvDataDisplay.AllowUserToDeleteRows = false;
+            dgvDataDisplay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DisplayAnimals();
+        }
+        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedRowIndex < 0 || selectedRowIndex >= animalList.Count)
+            {
+                MessageBox.Show("Please select a record to delete.", "Selection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        
+            animalList.RemoveAt(selectedRowIndex);
+            DeleteAnimal deleteAnimal = new DeleteAnimal();
+            deleteAnimal.Delete(selectedID, selectedRowIndex);
+            RefreshGridDisplay();
+            SetAddMode();
+        }
+
+        private void RefreshGridDisplay()
+        {
+            dgvDataDisplay.DataSource = null;
+            dgvDataDisplay.DataSource = animalList;
+        }
+
+        public void DisplayAnimals()
+        {
+            animalList = ReadAnimals.ReadAnimalFile();
+            RefreshGridDisplay();
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            SummaryForm summary = new SummaryForm();
+            summary.ShowDialog();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string id = txtAnimalID.Text.Trim();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+            string ageText = txtAge.Text.Trim();
+            string scoreText = txtScore.Text.Trim();
+
+            if (!AnimalValidator.ValidateAnimalId(id))
+            {
+                MessageBox.Show("Invalid Animal ID. It must be alphanumeric and 3-10 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateTextField(name))
+            {
+                MessageBox.Show("Invalid Name. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateTextField(species))
+            {
+                MessageBox.Show("Invalid Species. It must be 1-30 characters long and cannot contain '|'.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateAge(ageText))
+            {
+                MessageBox.Show("Invalid Age. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!AnimalValidator.ValidateRecoveryScore(scoreText))
+            {
+                MessageBox.Show("Invalid Score. It must be a positive integer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            AddAnimal addAnimal = new AddAnimal();
+            addAnimal.CreateAnimalFile();
+            Animal animal = new Animal(id, name, species, int.Parse(ageText), int.Parse(scoreText), "", "");
+            animal.Classification(int.Parse(scoreText));
+            addAnimal.Add(animal);
+            DisplayAnimals();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearInputFields();
+            SetAddMode();
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             string id = txtAnimalID.Text.Trim();
@@ -157,7 +203,7 @@ namespace Wildlife_Rehabilitation_Program
                 return;
             }
 
-              Animal targetAnimal = animalList.FirstOrDefault(a => string.Equals(a.AnimalID, id, StringComparison.OrdinalIgnoreCase));
+            Animal targetAnimal = animalList.FirstOrDefault(a => string.Equals(a.AnimalID, id, StringComparison.OrdinalIgnoreCase));
 
             if (targetAnimal != null)
             {
@@ -165,8 +211,7 @@ namespace Wildlife_Rehabilitation_Program
                 targetAnimal.Species = txtSpecies.Text.Trim();
                 targetAnimal.Age = age;
                 targetAnimal.RecoveredScore = score;
-                targetAnimal.Status = string.IsNullOrWhiteSpace(txtStatus.Text) ? targetAnimal.Status : txtStatus.Text.Trim();
-                targetAnimal.HousingUnit = string.IsNullOrWhiteSpace(txtHousing.Text) ? targetAnimal.HousingUnit : txtHousing.Text.Trim();
+                targetAnimal.Classification(score);
 
                 RefreshGridDisplay();
                 MessageBox.Show($"Record for {targetAnimal.Name} ({targetAnimal.AnimalID}) updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -177,47 +222,6 @@ namespace Wildlife_Rehabilitation_Program
             {
                 MessageBox.Show("Target animal record not found in system memory.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnSummary_Click(object sender, EventArgs e)
-        {
-            SummaryForm summary = new SummaryForm();
-            summary.ShowDialog();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            dgvDataDisplay.ReadOnly = true;
-            dgvDataDisplay.AllowUserToAddRows = false;
-            dgvDataDisplay.AllowUserToDeleteRows = false;
-            dgvDataDisplay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DisplayAnimals();
-        }
-        
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (selectedRowIndex < 0 || selectedRowIndex >= animalList.Count)
-            {
-                MessageBox.Show("Please select a record to delete.", "Selection Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        
-            animalList.RemoveAt(selectedRowIndex);
-            RefreshGridDisplay();
-            SetAddMode();
-        }
-
-        private void RefreshGridDisplay()
-        {
-            dgvDataDisplay.DataSource = null;
-            dgvDataDisplay.DataSource = animalList;
-        }
-
-        public void DisplayAnimals()
-        {
-            animalList = ReadAnimals.ReadAnimalFile();
-            RefreshGridDisplay();
         }
     }
 }
